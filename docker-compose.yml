@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+  staging:
+    container_name: staging-ai-planner
+    image: staging-ai-planner
+    build:
+      context: .
+    network_mode: bridge
+    ports:
+      - "8002:8002"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - no_proxy=localhost,127.0.0.0/8,172.24.0.0/16,*.azure.com,*.azure.net,*.azureedge.net,oai-gpt4-us2.openai.azure.com
+      - NO_PROXY=localhost,127.0.0.0/8,172.24.0.0/16,*.azure.com,*.azure.net,*.azureedge.net,oai-gpt4-us2.openai.azure.com
+    restart: always
+
+  # production:
+  #   container_name: production-app-ai-search-core
+  #   image: production-app-ai-search-core
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.prod
+  #   network_mode: bridge
+  #   ports:
+  #     - "5554:5554"
+  #   restart: always

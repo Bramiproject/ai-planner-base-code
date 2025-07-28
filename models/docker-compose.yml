@@ -1,0 +1,23 @@
+services:
+    vl-7b-instruct-awq:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      restart: always
+      network_mode: bridge
+      ports:
+        - "1389:1389"
+      stdin_open: true
+      tty: true
+      volumes:
+        - ~/.vllm:/root/.qwen2.5-vl-7b-instruct-awq
+      deploy:
+        resources:
+          reservations:
+            devices:
+              - capabilities: ["gpu"]
+      runtime: nvidia
+      entrypoint: ["/app/entrypoint.sh"]
+      env_file:
+        - .env
+ 

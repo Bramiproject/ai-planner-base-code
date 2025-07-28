@@ -1,21 +1,23 @@
 from langgraph.graph import StateGraph, END
-from .agents import GraphState, researcher_node, analysis_node, report_writer_node
+from .agents import GraphState, researcher_node, analysis_node, planner_node, syllabus_creation_node
 
 def create_workflow():
-    """Membuat dan mengkompilasi graph LangGraph."""
+    """Creates and compiles the LangGraph workflow without transformer agent."""
     workflow = StateGraph(GraphState)
 
-    # Menambahkan node ke graph
+    # Add nodes to graph
     workflow.add_node("researcher", researcher_node)
     workflow.add_node("analyst", analysis_node)
-    workflow.add_node("report_writer", report_writer_node)
+    workflow.add_node("planner", planner_node)
+    workflow.add_node("syllabus", syllabus_creation_node)
 
-    # Menentukan alur kerja
+    # Define workflow: researcher -> analyst -> planner -> syllabus
     workflow.set_entry_point("researcher")
     workflow.add_edge("researcher", "analyst")
-    workflow.add_edge("analyst", "report_writer")
-    workflow.add_edge("report_writer", END)
+    workflow.add_edge("analyst", "planner")
+    workflow.add_edge("planner", "syllabus")
+    workflow.add_edge("syllabus", END)
 
-    # Mengkompilasi graph menjadi objek yang bisa dijalankan
+    # Compile graph into executable object
     app = workflow.compile()
     return app
