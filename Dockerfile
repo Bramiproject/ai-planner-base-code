@@ -23,7 +23,7 @@ COPY . .
 EXPOSE 8002
 
 # Command to run the application
-CMD ["python", "/app/api-main.py"]
+CMD ["python", "api/api-main.py"]
 
 # Command to run the application
 # CMD ["uvicorn", "main.prod:APP", "--host", "0.0.0.0", "--port", "5554", "--workers", "32"]

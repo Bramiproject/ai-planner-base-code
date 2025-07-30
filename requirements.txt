@@ -60,10 +60,6 @@ grpc-google-iam-v1==0.14.2
 grpcio==1.72.0rc1
 grpcio-status==1.72.0rc1
 h11==0.14.0
-httpcore==0.16.3
-httplib2==0.22.0
-httpx==0.23.3
-httpx-sse==0.4.0
 idna==3.10
 ipykernel==6.29.5
 ipython==9.2.0
@@ -192,8 +188,6 @@ tenacity==8.5.0
 threadpoolctl==3.6.0
 tiktoken==0.9.0
 tomlkit==0.13.2
-torch==2.7.1
-torchaudio==2.7.1
 tornado==6.5.1
 tqdm==4.67.1
 traitlets==5.14.3
